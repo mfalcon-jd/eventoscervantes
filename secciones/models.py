@@ -16,10 +16,9 @@ class Seccion(models.Model):
     titulo = models.CharField(max_length=200)
     foto = models.ImageField(upload_to='foto_seccion', blank=False, max_length=200)
     contenido = models.TextField(blank=False)
-
     class Meta:
         verbose_name = 'Sección'
         verbose_name_plural = 'Secciones'
-
+    
     def __unicode__(self):
         return self.titulo
