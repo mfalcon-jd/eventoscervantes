@@ -5,7 +5,9 @@ class Galeria(models.Model):
 	nombre = models.CharField(max_length=150, blank=False, null=False)
 	fecha = models.DateField(blank=False)
 	descripcion = models.TextField(blank=True, null=True)
-	carousel = models.BooleanField()
+	carousel = models.BooleanField(default=False)
+	fechaCreacion = models.DateField(auto_now_add=True)
+	slug = models.SlugField(max_length=100)
 	
 	class Meta:
 		verbose_name = 'Galería'
