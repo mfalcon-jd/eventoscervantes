@@ -12,8 +12,11 @@ class Migration(SchemaMigration):
         db.create_table(u'galerias_galeria', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('nombre', self.gf('django.db.models.fields.CharField')(max_length=150)),
-            ('descripcion', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
             ('fecha', self.gf('django.db.models.fields.DateField')()),
+            ('descripcion', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('home', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('fechaCreacion', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=150)),
         ))
         db.send_create_signal(u'galerias', ['Galeria'])
 
@@ -40,8 +43,11 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Galeria'},
             'descripcion': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
             'fecha': ('django.db.models.fields.DateField', [], {}),
+            'fechaCreacion': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'home': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nombre': ('django.db.models.fields.CharField', [], {'max_length': '150'})
+            'nombre': ('django.db.models.fields.CharField', [], {'max_length': '150'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '150'})
         },
         u'galerias.imagen': {
             'Meta': {'object_name': 'Imagen'},

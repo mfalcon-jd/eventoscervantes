@@ -3,11 +3,13 @@ from django.contrib import admin
 from galerias.models import Galeria, Imagen
 
 class ImagenInline(admin.TabularInline):
-	model = Imagen
-	extra = 3
+    model = Imagen
+    extra = 3
 
 class GaleriaAdmin(admin.ModelAdmin):
-	"""docstring for Galeria"""
-	inlines = [ImagenInline]
+    """docstring for Galeria"""
+    inlines = [ImagenInline]
+    exclude = ('slug',)
+
 
 admin.site.register(Galeria, GaleriaAdmin)

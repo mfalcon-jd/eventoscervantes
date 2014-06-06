@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class Galeria(models.Model):
 	nombre = models.CharField(max_length=150, blank=False, null=False)
 	fecha = models.DateField(blank=False)
 	descripcion = models.TextField(blank=True, null=True)
-	carousel = models.BooleanField(default=False)
+	home = models.BooleanField(default=False)
 	fechaCreacion = models.DateField(auto_now_add=True)
-	slug = models.SlugField(max_length=100)
+	slug = models.SlugField(max_length=150)
 	
 	class Meta:
 		verbose_name = 'Galería'
@@ -15,6 +16,10 @@ class Galeria(models.Model):
 
 	def __unicode__(self):
 		return self.nombre
+
+	def save(self):
+	    self.slug = slugify(self.nombre)
+	    super(Galeria,self).save()
 
 class Imagen(models.Model):
 	galeria = models.ForeignKey(Galeria)

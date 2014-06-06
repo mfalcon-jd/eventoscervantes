@@ -12,6 +12,7 @@ class Migration(SchemaMigration):
         db.create_table(u'secciones_tiposeccion', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('nombre', self.gf('django.db.models.fields.CharField')(max_length=80)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=80)),
         ))
         db.send_create_signal(u'secciones', ['TipoSeccion'])
 
@@ -23,7 +24,7 @@ class Migration(SchemaMigration):
             ('foto', self.gf('django.db.models.fields.files.ImageField')(max_length=200)),
             ('contenido', self.gf('django.db.models.fields.TextField')()),
             ('fechaCreacion', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=100)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=200)),
         ))
         db.send_create_signal(u'secciones', ['Seccion'])
 
@@ -43,14 +44,15 @@ class Migration(SchemaMigration):
             'fechaCreacion': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'foto': ('django.db.models.fields.files.ImageField', [], {'max_length': '200'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '100'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '200'}),
             'tipo': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['secciones.TipoSeccion']"}),
             'titulo': ('django.db.models.fields.CharField', [], {'max_length': '200'})
         },
         u'secciones.tiposeccion': {
             'Meta': {'object_name': 'TipoSeccion'},
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'nombre': ('django.db.models.fields.CharField', [], {'max_length': '80'})
+            'nombre': ('django.db.models.fields.CharField', [], {'max_length': '80'}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '80'})
         }
     }
 
