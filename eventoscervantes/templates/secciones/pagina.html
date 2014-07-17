@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+{{ pagina.nombre }}
+{% for seccion in secciones %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <div class="row featurette">
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image">
+        </div>
+        <div class="col-md-7">
+            <h2 class="featurette-heading">{{ seccion.titulo }} <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">{{ seccion.contenido }}</p>
+        </div>
+    </div>
+    {% else %}
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">{{ seccion.titulo }} <span class="text-muted">It'll blow your mind.</span></h2>
+            <p class="lead">{{ seccion.contenido }}</p>
+        </div>
+        <div class="col-md-5">
+            <img class="featurette-image img-responsive" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image">
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+{% endblock %}

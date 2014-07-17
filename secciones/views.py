@@ -1,11 +1,25 @@
+# -*- coding: utf-8 -*-
 from django.template import RequestContext
 from django.shortcuts import render, get_object_or_404, get_list_or_404, render_to_response
-from secciones.models import TipoSeccion
+from secciones.models import TipoSeccion, Seccion
 
-def tipo_seccion(request, slug):
-    tipo_seccion = get_object_or_404(TipoSeccion, slug=str(slug))
+def index(request):
+    return render(request,'index.html')
+
+def pagina(request, slug):
+    pagina = get_object_or_404(TipoSeccion, slug=str(slug))
+    secciones = pagina.seccion_set.all()
     ctx = RequestContext(request, {
-            'tipo_seccion': tipo_seccion,
+            'pagina': pagina,
+            'secciones': secciones,
         }
     )
-    return render_to_response('secciones/tipo_seccion.html', context_instance=ctx)
+    return render_to_response('secciones/pagina.html', context_instance=ctx)
+
+def seccion(request, slug):
+    seccion = get_object_or_404(Seccion, slug=str(slug))
+    ctx = RequestContext(request, {
+            'seccion': seccion,
+        }
+    )
+    return render_to_response('secciones/seccion.html', context_instance=ctx)
