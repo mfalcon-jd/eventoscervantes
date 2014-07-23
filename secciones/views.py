@@ -8,7 +8,7 @@ def index(request):
 
 def pagina(request, slug):
     pagina = get_object_or_404(TipoSeccion, slug=str(slug))
-    secciones = pagina.seccion_set.all()
+    secciones = pagina.seccion_set.all().order_by('id')
     ctx = RequestContext(request, {
             'pagina': pagina,
             'secciones': secciones,
@@ -23,3 +23,6 @@ def seccion(request, slug):
         }
     )
     return render_to_response('secciones/seccion.html', context_instance=ctx)
+
+def contacto(request):
+    return render(request,'contacto.html')

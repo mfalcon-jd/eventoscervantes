@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'secciones.views.index', name='index'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^contacto/$', 'secciones.views.contacto', name='contacto'),
     # url(r'^pagina/', include('secciones.urls')),
     url(r'^seccion/(?P<slug>[a-zA-Z0-9\-]+)/$', 'secciones.views.seccion', name='seccion'),
     url(r'^(?P<slug>[a-zA-Z0-9\-]+)/$', 'secciones.views.pagina', name='pagina'),
